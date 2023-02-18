@@ -33,6 +33,10 @@ import org.springframework.lang.Nullable;
  * this interface. It only serves as suggestion for bean definition
  * readers that want to follow standard naming conventions.
  *
+ * bean 定义读取器的简单接口。使用 Resource 和 String 位置参数指定加载方法。
+ * <p>具体的 bean 定义读者当然可以为 bean 定义添加额外的加载和注册方法，具体到他们的 bean 定义格式。
+ * <p>请注意，bean 定义读取器不必实现此接口。它仅作为希望遵循标准命名约定的 bean 定义读者的建议。
+ *
  * @author Juergen Hoeller
  * @since 1.1
  * @see org.springframework.core.io.Resource
@@ -43,6 +47,8 @@ public interface BeanDefinitionReader {
 	 * Return the bean factory to register the bean definitions with.
 	 * <p>The factory is exposed through the BeanDefinitionRegistry interface,
 	 * encapsulating the methods that are relevant for bean definition handling.
+	 *
+	 * factory
 	 */
 	BeanDefinitionRegistry getRegistry();
 
@@ -118,6 +124,11 @@ public interface BeanDefinitionReader {
 	 * (or ResourcePatternResolver) of this bean definition reader
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 *
+	 * 从指定的资源位置加载 bean 定义。
+	 * @param locations 资源位置，将与这个bean定义读取器的ResourceLoader（或ResourcePatternResolver）一起加载
+	 * @return 找到的bean定义的数量
+	 * @throws BeanDefinitionStoreException 在加载或解析错误的情况下
 	 */
 	int loadBeanDefinitions(String... locations) throws BeanDefinitionStoreException;
 
